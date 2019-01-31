@@ -18,16 +18,17 @@
 
 ```flow
 start=>start: 面试开始
-end=>end: 面试结束
 selfIntro=>operation: 自我介绍
 beAsked=>operation: 被提问
 understoodQuestion=>condition: 理解问题?
-answerQuestion=>operation: 回答问题
 transformQuestion=>operation: 尝试/请求转换提问方式
+answerQuestion=>operation: 回答问题
 isCurInterviewGoingOver=>condition: 本轮面试就要结束了？
 askForAbilityLevel=>operation: 询问面试官眼中自己的能力等级
-hasGap=>condition: 纠正自己的评估后，仍与面试官的评估有差距？
+hasGap=>condition: 调整自己的评估后，仍与面试官的评估有差距？
+willingToCorrect=>condition: 愿意纠正面试官？
 tryCorrect=>operation: 尝试纠正面试官的评估
+end=>end: 面试结束
 
 start->selfIntro->beAsked->understoodQuestion
 
@@ -37,8 +38,11 @@ understoodQuestion(no)->transformQuestion->beAsked
 isCurInterviewGoingOver(yes)->askForAbilityLevel->hasGap
 isCurInterviewGoingOver(no)->beAsked
 
-hasGap(yes)->tryCorrect->beAsked
+hasGap(yes)->willingToCorrect
 hasGap(no)->end
+
+willingToCorrect(yes)->tryCorrect->beAsked
+willingToCorrect(no)->end
 ```
 
 正文开始：
@@ -150,7 +154,7 @@ hasGap(no)->end
 
 1. 在被提问时，适时引导面试官
 2. 放弃询问自己的市场价
-3. 询问和尝试纠正面试官眼中自己的能力等级，直到和面试官达成一致
+3. 询问和尝试纠正面试官眼中自己的能力等级，直到和面试官达成一致，或者放弃纠正
 
 也可以再次参考前面的流程图，比较直观。
 
