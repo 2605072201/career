@@ -8,7 +8,7 @@
 
 // boss 下面这个日期之前的看了
 // https://www.zhipin.com/geek/new/index/recommend?expectId=24439869&sortType=2
-openWinAfterTime('2019/01/29 20:26')
+openWinAfterTime('2019/02/19 17:02')
 
 function openWinAfterTime(time = Date.now() - 3 * 24 * 60 * 1000) {
   $('.job-primary [ka^=new_list_job_]')
@@ -25,7 +25,7 @@ function filterPage(url, filterTime) {
   $(win).load(function() {
     let publishTime = new Date(
       $(this.document)
-        .find('.job-author .time')
+        .find('.sider-company .gray')
         .text()
         .match(reg)[0]
     )
